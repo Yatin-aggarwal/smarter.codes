@@ -14,7 +14,7 @@ load_dotenv()
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
 
-index_name = "url-quey"
+index_name = "url-query"
 index = pc.Index(index_name)
 
 app = FastAPI()

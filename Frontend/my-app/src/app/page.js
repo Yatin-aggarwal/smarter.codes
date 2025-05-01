@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 export default function Home() {
+  const [loading, setLoading] = useState(false); // Loading state
   const [url, setUrl] = useState(""); // Store URL
   const [query, setQuery] = useState(""); // Store query
   const [results, setResults] = useState([]); // Store results
@@ -10,6 +11,7 @@ export default function Home() {
   // Handle the search
   const handleSearch = async () => {
     const data = { url, query };
+    setLoading(true); // Set loading to true
     try {
         const response = await axios.get('http://127.0.0.1:8000', {
           params: { "query": query,"url":url }
@@ -19,8 +21,24 @@ export default function Home() {
       } catch (error) {
         console.error('Error fetching:', error);
       }
+      setUrl("")
+      setQuery(""); // Clear the input fields after search
+      setLoading(false); // Set loading to false
+      setArr(Array(10).fill(0)); // Reset the array to 0
   };
-
+  if(loading===true){
+    return (
+      <>
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
+        </div>
+        <div className="flex items-center justify-center h-screen">
+          <h1 className="text-2xl font-bold">Loading...</h1>
+        </div>
+      </>
+    )
+  }
+  
   return (
     <div className="flex flex-col items-center p-8 space-y-4">
       <h1 className="text-3xl font-bold">Search App</h1>
@@ -60,7 +78,7 @@ export default function Home() {
           results.slice(0, 10).map((result, index) => (
             <div  className="p-3 border-2  border-gray-200 mb-2 rounded-md  w-full ">
                 <div className="w-full flex mb-[1%]">
-                    <span>{result["text"]}</span>
+                    <span>{result["text"].slice(5, -5)}</span>
                     <div className="w-[80%] flex justify-end">Score:{result["score"]}</div>
                 </div>
                 <button className="bg-blue-500  rounded p-[0.5%] " onClick={()=>{
