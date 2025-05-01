@@ -1,11 +1,12 @@
-Backend setup
-open backend folder
-open cmd:
-  pip install requirements.txt
-  fastapi run main.py
+<h1>Backend setup</h1>
+<div>open backend folder</div>
 
-Frontend setup
-opne frontend/myapp
-open cmd
-  npm install
-  npm run dev 
+  <div>open cmd:</div>
+  <div>pip install requirements.txt</div>
+  <div>fastapi run main.py</div>
+
+<h1>Frontend setup</h1>
+<div>opne frontend/myapp</div>
+  <div>open cmd</div>
+    <div>npm install</div>
+   <div> npm run dev</div> 
