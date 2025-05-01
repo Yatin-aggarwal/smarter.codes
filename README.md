@@ -1,3 +1,5 @@
+<h1>Pinecone Setup</h1>
+<div>create index in pincone dashboard name url-query</div>
 <h1>Backend setup</h1>
 <div>open backend folder</div>
 
